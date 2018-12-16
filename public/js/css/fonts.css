@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'mit';
+    src: url('../fonts/WebMitra.eot');
+    src: url('../fonts/WebMitrad41d.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/WebMitra.woff') format('woff'),
+         url('../fonts/WebMitra.ttf') format('truetype'),
+         url('../fonts/WebMitra.svg#WebMitra') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    unicode-range: U+0600–06FF;
+}
+
+@font-face {
+    font-family: 'mitrab';
+    src: url('../fonts/WebMitraBold.eot');
+    src: url('../fonts/WebMitraBoldd41d.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/WebMitraBold.woff') format('woff'),
+         url('../fonts/WebMitraBold.ttf') format('truetype'),
+         url('../fonts/WebMitraBold.svg#WebMitraBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    unicode-range: U+0600–06FF;
+}
