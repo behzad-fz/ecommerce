@@ -20,3 +20,9 @@ Route::get('test', function () {
 });
 
 Route::get('admin/categories','CategoriesController@Index');
+Route::post('admin/categories',[
+	'uses' =>'CategoriesController@create',
+	'as' => 'CategoriesController.create'
+]);
+
+Route::delete('admin/categories/{id}','CategoriesController@destroy');

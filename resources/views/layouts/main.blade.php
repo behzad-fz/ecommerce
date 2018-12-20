@@ -96,8 +96,8 @@
             <hr />
 
             <section id="main-content" class="clearfix">
-              @if(session()->has('massage'))
-                <p class="alert">{{session()->get('massage')}}</p>
+              @if(session('massage'))
+                <p class="alert">{{session('massage')}}</p>
                 @endif
                 @yield('content')
             </section><!-- end main-content -->
