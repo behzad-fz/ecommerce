@@ -19,6 +19,8 @@ Route::get('test', function () {
     return view('test');
 });
 
+//categories
+
 Route::get('admin/categories','CategoriesController@Index');
 Route::post('admin/categories',[
 	'uses' =>'CategoriesController@create',
@@ -26,3 +28,13 @@ Route::post('admin/categories',[
 ]);
 
 Route::delete('admin/categories/{id}','CategoriesController@destroy');
+
+//products
+
+route::get('admin/products','ProductsController@Index');
+
+route::post('admin/products',[
+	'uses'=> 'ProductsController@create',
+	'as' => 'ProductsController.create'
+	]);
+route::delete('admin/products/{id}','ProductsController@destroy');

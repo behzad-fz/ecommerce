@@ -26,7 +26,7 @@
     	@if(count($errors))
     		<ul>
     			@foreach($errors->all() as $error)
-    			<li>
+    			<li style="color: #e3342f">
     			{{$error}}
     			</li>	
     			@endforeach
