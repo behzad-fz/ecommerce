@@ -34,7 +34,7 @@
     </section><!-- end top-area -->
     <section id="action-bar">
         <div id="logo">
-            <a href="#"><span id="logo-accent">e</span> فروشگاه</a>
+            <a href="/"><span id="logo-accent">e</span> فروشگاه</a>
         </div><!-- end logo -->
 
         <nav class="dropdown">
@@ -42,10 +42,11 @@
                 <li>
                     <a href="#">گروه ها <img src="{{URL::asset('img/down-arrow.gif')}}" alt="Shop by Category" /></a>
                     <ul>
-                        <li><a href="#">لپ تاپ</a></li>
-                        <li><a href="#">دسکتاپ</a></li>
-                        <li><a href="#">موبایل</a></li>
-                        <li><a href="#">تبلت</a></li>
+                 @foreach($catnav as $category)
+                <a href="store/category/{{$category->id}}">
+                    <li>{{$category->name}} </li>
+                </a>
+                @endforeach
                     </ul>
                 </li>
             </ul>
@@ -92,6 +93,8 @@
     </section><!-- end action-bar -->
 </header>
 
+        @yield('promo')
+
 
             <hr />
 
@@ -101,7 +104,7 @@
                 @endif
                 @yield('content')
             </section><!-- end main-content -->
-
+             @yield('pagination')
             <hr />
 
 

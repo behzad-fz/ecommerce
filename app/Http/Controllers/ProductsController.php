@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 
@@ -14,6 +15,7 @@ class ProductsController extends Controller
 
 	private $product;
 	public function __construct(product $product){
+		
 		$this->product=$product;
 
 	}
@@ -48,22 +50,37 @@ class ProductsController extends Controller
 		$thumbnailImage->resize(468,249);
 		$thumbnailImage->save($thumbnailPath.time().$originalImage->getClientOriginalName());
 		//$this->product->image = 'img/products/'.$filename;
-    	$this->product->image ='/thumbnail/products/'.time().$originalImage->getClientOriginalName();
+    	$this->product->image ='thumbnail/products/'.time().$originalImage->getClientOriginalName();
     	$this->product->save();
     	return redirect()->back()->with('massage','محصول  افزوده شد');
-		
+    	
 		}
 
 
 		public function destroy($id){
-		
-		if($this->product->find($id)){
-			$this->product->find($id)->delete();
-			Storage::delete($this->product->image);
+
+		$target=$this->product->find($id);
+		if($target){
+			$target->delete();
+			Storage::delete($target->image);
+			$targetOriginalImage= str_replace('thumbnail', 'img', $target->image);
+			Storage::delete($targetOriginalImage);
 
 			return redirect()->back()->with('massage','محصول  حذف شد');
 		}
 		return redirect()->back()->with('massage','دوباره تلاش کید');
+//Storage::delete('img/products/15456888882a5n15d.jpg');
+//Storage::delete('thumbnail/products/154569143825.jpg');
+//Storage::delete('154569143825.jpg');
+		}
+
+		public function toggleAvailablity(Request $request,$id){
+			$target=$this->product->find($id);
+			if($target){
+				$target->update(['availablity' => $request->input('availablity')]);
+				return redirect()->back()->with('massage','محصول  به روز شد');
+			}
+            return redirect()->back()->with('massage','دوباره تلاش کید');
 
 		}
 

@@ -547,6 +547,8 @@ header a:link, header a:visited {
 
 .product img.feature {
     margin-bottom: 40px;
+    width: 240px;
+    height:     127px;
 }
 
 .product .wish a:link, .product .wish a:visited {

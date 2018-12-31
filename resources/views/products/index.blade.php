@@ -16,15 +16,23 @@
 	<ul>
 		@foreach($products as $product)
 		<li>
-			<img src="{{$product->image}}" alt="{{$product->name}}" width="50">
+			<img src="/{{$product->image}}" alt="{{$product->name}}" width="50">
 			{{$product->title}} -
-			<form action="{{url('ProductsController.toggle-availablity')}}" class="form-inline">
+			<form action="{{url('admin/products',$product->id)}}" class="form-inline" method="post">
+				@csrf
+				@method('PUT')
 				<input type="hidden" name="id" value="{{$product->id}}">
 				<select name="availablity">
-					<option value="1">موجود</option>
+					@if($product->availablity ==1)
+					<option value="1" selected>موجود</option>
 					<option value="0"> ناموجود</option>
+						@endif
+						@if(!$product->availablity ==1)
+							<option value="1" selected>موجود</option>
+							<option value="0" selected> ناموجود</option>
+						@endif
 				 </select>
-				 <input type="submit" value="به روز رسانی">				
+				 <input type="submit" value="به روز رسانی">
 			</form>
 			-
 			<form action="{{url('admin/products',$product->id)}}" class="form-inline" method="post">
@@ -85,9 +93,9 @@
 			<lable>تصویر   </lable><br>
 			<input type="file" name="image">
 		</p>
-		<p>
+		
 			<input type="submit" value="درج محصول" class="secondary-cart-btn">
-		</p>
+		
 	</form>
 </div>
 @stop

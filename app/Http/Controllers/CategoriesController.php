@@ -10,6 +10,7 @@ class CategoriesController extends Controller
 
 	private $category;
 	public function __construct(category $category){
+      
 
 		$this->category=$category;
 

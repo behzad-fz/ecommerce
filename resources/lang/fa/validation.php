@@ -145,7 +145,11 @@ return [
     */
 
     'attributes' => [
-        'name' => 'نام'
+        'name' => 'نام' ,
+        'title' => 'نام' ,
+        'description' => 'توضیحات' ,
+        'price' => 'قیمت' ,
+        'image' => 'تصویر'
 
     ],
 

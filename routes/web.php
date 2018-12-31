@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('test', function () {
-    return view('test');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//
+//Route::get('test', function () {
+//    return view('test');
+//});
 
 //categories
 
@@ -32,9 +32,18 @@ Route::delete('admin/categories/{id}','CategoriesController@destroy');
 //products
 
 route::get('admin/products','ProductsController@Index');
-
 route::post('admin/products',[
 	'uses'=> 'ProductsController@create',
 	'as' => 'ProductsController.create'
 	]);
 route::delete('admin/products/{id}','ProductsController@destroy');
+route::put('admin/products/{id}','ProductsController@toggleAvailablity');
+
+//store
+route::get('/','StoreController@Index');
+route::get('/{id}','StoreController@View');
+route::post('/{id}',[
+	'uses' => 'StoreController@AddCart',
+	'as' => 'store.AddCart'
+]);
+route::get('store/category/{id}','StoreController@Category');
