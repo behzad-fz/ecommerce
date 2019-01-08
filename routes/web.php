@@ -20,30 +20,67 @@
 //});
 
 //categories
+route::group(['middleware' =>'auth'],function(){
 
-Route::get('admin/categories','CategoriesController@Index');
-Route::post('admin/categories',[
-	'uses' =>'CategoriesController@create',
-	'as' => 'CategoriesController.create'
-]);
+		
+			Route::get('admin/categories','CategoriesController@Index');
+			Route::post('admin/categories',[
+				'uses' =>'CategoriesController@create',
+				'as' => 'CategoriesController.create'
+			]);
 
-Route::delete('admin/categories/{id}','CategoriesController@destroy');
+			Route::delete('admin/categories/{id}','CategoriesController@destroy');
 
-//products
+			//products
 
-route::get('admin/products','ProductsController@Index');
-route::post('admin/products',[
-	'uses'=> 'ProductsController@create',
-	'as' => 'ProductsController.create'
-	]);
-route::delete('admin/products/{id}','ProductsController@destroy');
-route::put('admin/products/{id}','ProductsController@toggleAvailablity');
+			route::get('admin/products','ProductsController@Index');
+			route::post('admin/products',[
+				'uses'=> 'ProductsController@create',
+				'as' => 'ProductsController.create'
+				]);
+			route::delete('admin/products/{id}','ProductsController@destroy');
+			route::put('admin/products/{id}','ProductsController@toggleAvailablity');
+});
+	
 
 //store
-route::get('/','StoreController@Index');
+route::get('/',[
+	'uses' => 'StoreController@Index',
+	'as'	=> 'login'
+]);
 route::get('/{id}','StoreController@View');
 route::post('/{id}',[
 	'uses' => 'StoreController@AddCart',
 	'as' => 'store.AddCart'
 ]);
 route::get('store/category/{id}','StoreController@Category');
+
+
+//search
+
+route::get('store/search','StoreController@search');
+
+//new account
+
+route::get('users/newaccount','UsersController@NewAccount');
+route::post('users/newaccount',[
+	'uses'	=> 'UsersController@create',
+	'as'	=> 'UsersController.create'
+]);
+
+route::get('users/signin','UsersController@SignIn');
+route::post('users/signin',[
+	'uses'	=> 'UsersController@signinto',
+	'as'	=>'UsersController.signinto'
+]);
+
+route::get('users/logout','UsersController@logout');
+
+route::get('store/contact','StoreController@contact');
+
+route::post('store/contact','StoreController@email');
+
+
+
+
+

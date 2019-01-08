@@ -43,7 +43,7 @@
                     <a href="#">گروه ها <img src="{{URL::asset('img/down-arrow.gif')}}" alt="Shop by Category" /></a>
                     <ul>
                  @foreach($catnav as $category)
-                <a href="store/category/{{$category->id}}">
+                <a href="/store/category/{{$category->id}}">
                     <li>{{$category->name}} </li>
                 </a>
                 @endforeach
@@ -53,38 +53,48 @@
         </nav>
 
         <div id="search-form">
-            <form action="#" method="get">
+            <form action="{{url('store/search')}}" method="get">
                 <input type="submit" value="جستجو" class="search submit">
-                <input type="search" name="search" class="search">
+                <input type="search" name="search" class="search" style="direction: rtl;">
                 
             </form>
         </div><!-- end search-form -->
 
         <div id="user-menu">
-            <!--
-            <nav id="signin" class="dropdown">
-                <ul>
-                    <li>
-                        <a href="#"><img src="{{URL::asset('img/user-icon.gif')}}" alt="Sign In" /> Sign In <img src="{{URL::asset('img/down-arrow.gif')}}" alt="Sign In" /></a>
-                        <ul>
-                            <li><a href="#">Sign In</a></li>
-                            <li><a href="#">Sign Up</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>-->
 
+            @if(Auth::check())
             <nav class="dropdown">
                 <ul>
                     <li>
-                        <a href="#"><img src="{{URL::asset('img/user-icon.gif')}}" alt="Andrew Perkins" /> آقای پرکینز <img src="{{URL::asset('img/down-arrow.gif')}}" alt="Andrew Perkins" /></a>
+                        <a href="#"><img src="{{URL::asset('img/user-icon.gif')}}" alt="Andrew Perkins" /> 
+                            {{Auth::user()->firstname}} {{Auth::user()->lastname}}
+                            <img src="{{URL::asset('img/down-arrow.gif')}}" alt="Andrew Perkins" /></a>
+                            
                         <ul>
                             <li><a href="#">سفارشات</a></li>
-                            <li><a href="#">خروج</a></li>
+                            @if(Auth::user()->admin ==1)
+                            <li><a href="{{url('admin/categories')}}">مدیریت گروه ها</a></li>
+                             <li><a href="{{url('admin/products')}}">مدیریت محصولات </a></li>
+                             @endif
+                            <li><a href="{{url('users/logout')}}">خروج</a></li>
                         </ul>
                     </li>
                 </ul>
             </nav>
+            @else
+        
+            <nav id="signin" class="dropdown">
+                <ul>
+                    <li>
+                        <a href="#"><img src="{{URL::asset('img/user-icon.gif')}}" alt="Sign In" />  ورود <img src="{{URL::asset('img/down-arrow.gif')}}" alt="Sign In" /></a>
+                        <ul>
+                            <li><a href="{{url('users/signin')}}">ورود</a></li>
+                            <li><a href="{{url('users/newaccount')}}">ثبت نام</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            @endif
         </div><!-- end user-menu -->
 
         <div id="view-cart">
@@ -94,6 +104,7 @@
 </header>
 
         @yield('promo')
+        @yield('search-keyword')
 
 
             <hr />
@@ -139,7 +150,7 @@
             <h4>سایر</h4>
             <ul>
                 <li><a href="#">درباره ما</a></li>
-                <li><a href="#">تماس با ما</a></li>
+                <li><a href="{{url('store/contact')}}">تماس با ما</a></li>
             </ul>
         </div><!-- end extras -->
     </section><!-- end links -->

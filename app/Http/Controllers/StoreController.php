@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\models\product;
 use Illuminate\Http\Request;
 use App\models\category;
+Use Mail;
+use App\Mail\OrderShipped;
 
 class StoreController extends Controller
 {
@@ -39,5 +41,33 @@ class StoreController extends Controller
     return view('store.category',compact('products'),compact('category'));
 
 
+   }
+
+   public function search(Request $request) {
+
+    $keyword = $request->input('search');
+    $results= $this->product->where('title','LIKE','%'.$keyword.'%')->get();
+      return view('store.search',compact('results'),compact('keyword'));
+
+   }
+
+
+   public function contact(){
+
+    return view('store.contact');
+   }
+
+   public function email(Request $request){
+            $this->validate($request,[
+'email' => 'required',
+'body' => 'required'
+        ]);
+
+    $email = $request->input('email');
+    $body=$request->input('body');
+    $address="fazelasl@yahoo.com";
+
+    Mail::to($address)->send(new OrderShipped($email,$body));
+       return redirect()->back()->with('massage','ایمیل ارسال شد');
    }
 }

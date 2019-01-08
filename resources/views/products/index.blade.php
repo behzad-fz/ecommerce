@@ -83,7 +83,7 @@
 		</p>
 		<p>
 			<lable>توضیحات   </lable><br>
-			<input type="textarea" name="description" style="height: 60px;">
+			<textarea name="description" style="height: 60px;"></textarea>
 		</p>
 		<p>
 			<lable>قیمت   </lable><br>

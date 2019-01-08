@@ -43,7 +43,7 @@
         <div class="product">
             <a href="#"><img src="{{URL::asset($product->image)}}" alt="Product" class="feature"></a>
 
-            <h3><a href="{{$product->id}}">{{$product->title}} <a></h3>
+            <h3><a href="{{url('/',$product->id)}}">{{$product->title}} <a></h3>
 
             <p > {{$product->description}}</p>
             <h5>موجودی: <span class="{{app('App\libs\Availablity')->displayclass($product->availablity)}}">
