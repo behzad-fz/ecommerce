@@ -1,3 +1,5 @@
+
+
 # Requirment
 * PHP 7
 * Laravel 5.7
@@ -14,28 +16,18 @@
 
 4.  in .env file add these changes
 
-DB_CONNECTION=mysql
-
-DB_HOST=127.0.0.1
-
-DB_PORT=3306
-
-DB_DATABASE=eccomerce (or what ever you named your db)
-
-DB_USERNAME=root
-
+DB_CONNECTION=mysql 
+DB_HOST=127.0.0.1   
+DB_PORT=3306    
+DB_DATABASE=eccomerce (or what ever you named your db)  
+DB_USERNAME=root    
 DB_PASSWORD=
 
-MAIL_DRIVER=smtp
-
-MAIL_HOST=smtp.gmail.com
-
-MAIL_PORT=587
-
-MAIL_USERNAME=*****@gmail.com (your email)
-
-MAIL_PASSWORD=*****(your password)
-
+MAIL_DRIVER=smtp    
+MAIL_HOST=smtp.gmail.com    
+MAIL_PORT=587   
+MAIL_USERNAME=*****@gmail.com (your email)  
+MAIL_PASSWORD=*****(your password)  
 MAIL_ENCRYPTION=null
 
 5. php artisan key:generate
