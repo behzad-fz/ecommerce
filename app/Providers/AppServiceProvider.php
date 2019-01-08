@@ -15,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('catnav',category::all());
+        if (\Schema::hasTable('categories')) {
+            View::share('catnav',category::all());
+        }
     }
 
     /**
